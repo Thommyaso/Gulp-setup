@@ -1,0 +1,1 @@
+console.log("fuck off"),console.log("okey");var abc=123;
