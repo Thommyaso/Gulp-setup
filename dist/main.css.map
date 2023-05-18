@@ -1,1 +1,1 @@
-{"version":3,"sources":["test/_index.scss","main.css"],"names":[],"mappings":"AAAA;EACI,sBAAA;ACCJ","file":"main.css","sourcesContent":["body {\n    background-color: aqua;\n}","body {\n  background-color: aqua;\n}"]}
+{"version":3,"sources":["test/_index.scss","main.css"],"names":[],"mappings":"AAAA;EACI,gCAAA;ACCJ","file":"main.css","sourcesContent":["body {\n    background-color: rgb(30, 44, 9);\n}","body {\n  background-color: rgb(30, 44, 9);\n}"]}
