@@ -1,1 +1,1 @@
-console.log("fuck off"),console.log("okey");var abc=123;
+console.log("app.js is working!");var ok=1;console.log("xyz.js working too!");var abc=123;

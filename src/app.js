@@ -1,1 +1,2 @@
-console.log('fuck off');
+console.log('app.js is working!');
+const ok = 1;
