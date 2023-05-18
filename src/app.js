@@ -1,2 +1,3 @@
-console.log('app.js is working!');
-const ok = 1;
+console.log('apps.js is working!');
+const ok = 1200;
+console.log(ok);

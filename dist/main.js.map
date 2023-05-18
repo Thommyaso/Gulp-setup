@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.js","xyz.js"],"names":["console","log","ok","abc"],"mappings":"AAAAA,QAAAC,IAAA,uBACA,IAAAC,GAAA,KACAF,QAAAC,IAAAC,ICFAF,QAAAC,IAAA,uBACA,IAAAE,IAAA","file":"main.js","sourcesContent":["console.log('apps.js is working!');\nconst ok = 1200;\nconsole.log(ok);\n","console.log('xyz.js working too!');\nconst abc = 123;\n"]}

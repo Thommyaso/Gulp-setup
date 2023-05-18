@@ -1,0 +1,1 @@
+{"version":3,"sources":["test/_index.scss","main.css"],"names":[],"mappings":"AAAA;EACI,sBAAA;ACCJ","file":"main.css","sourcesContent":["body {\n    background-color: aqua;\n}","body {\n  background-color: aqua;\n}"]}

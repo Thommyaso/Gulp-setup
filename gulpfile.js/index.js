@@ -10,8 +10,10 @@ const terser = require('gulp-terser');
 const sass = require('gulp-sass')(require('sass'));
 const autoprefixer = require('gulp-autoprefixer');
 
+const browserSync = require('browser-sync');
+
 function minify() {
-  return src('./src/**/*.js')
+  return src('./src/**/*.js', { sourcemaps: true })
     .pipe(plumber())
     .pipe(concat('main.js'))
     .pipe(babel({
@@ -25,22 +27,47 @@ function minify() {
       ],
     }))
     .pipe(terser())
-    .pipe(dest('./dist'));
+    .pipe(dest('./dist', { sourcemaps: '.' }));
 }
 
 function buildStyles() {
-  return src('./src/sass/main.scss')
+  return src('./src/sass/main.scss', { sourcemaps: true })
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(concat('main.css'))
-    .pipe(dest('dist'));
+    .pipe(dest('dist', { sourcemaps: '.' }));
 }
 
 exports.default = series(minify, buildStyles);
 exports.js = minify;
 exports.css = buildStyles;
 
-exports.watch = function watching() {
-  watch('src/*.js', minify);
-  watch('src/**/*scss', buildStyles);
-};
+// browser sync:
+function browserSyncServe(cb) {
+  browserSync.init({
+    server: {
+      baseDir: 'dist',
+    },
+  });
+  cb();
+}
+
+function browserSyncReload(cb) {
+  browserSync.reload();
+  cb();
+}
+
+function watching() {
+  watch('**/*.html', browserSyncReload);
+  watch('src/**/*.js', series(minify, browserSyncReload));
+  watch('src/**/*.scss', series(buildStyles, browserSyncReload));
+}
+
+exports.watch = watching;
+
+exports.serve = series(
+  minify,
+  buildStyles,
+  browserSyncServe,
+  watching,
+);
