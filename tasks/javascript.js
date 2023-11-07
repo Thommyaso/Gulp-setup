@@ -12,7 +12,7 @@ const gulp = require('gulp');
 const entry = './src/main.js';
 
 // Development Js
-gulp.task('workJs', () => browserify({ entries: [entry], debug: true })
+gulp.task('buildJs', () => browserify({ entries: [entry], debug: true })
   .transform(babelify, { presets: ['env'] })
   .bundle()
   .pipe(source(entry))
@@ -24,7 +24,7 @@ gulp.task('workJs', () => browserify({ entries: [entry], debug: true })
   .pipe(dest('./dist')));
 
 // Production Js
-gulp.task('workJs:prod', () => browserify({ entries: [entry], debug: true })
+gulp.task('buildJs:prod', () => browserify({ entries: [entry], debug: true })
   .transform(babelify, { presets: ['env'] })
   .bundle()
   .pipe(source(entry))

@@ -6,7 +6,7 @@ requireDir('./tasks');
 // Main tasks
 
 // Development task
-gulp.task('default', gulp.series('workJs', 'buildStyles', 'html', 'copyFiles', 'browserSyncServe', 'watch-all'));
+gulp.task('default', gulp.series('buildJs', 'buildStyles', 'html', 'copyFiles', 'browserSyncServe', 'watch-all'));
 
 // Production task
-gulp.task('production', gulp.series('clean', 'workJs:prod', 'buildStyles:prod', 'html', 'copyFiles', 'browserSyncServe', 'watch-all'));
+gulp.task('production', gulp.series('clean', 'buildJs:prod', 'buildStyles:prod', 'html', 'copyFiles'));
