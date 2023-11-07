@@ -11,5 +11,6 @@
         "sourceType": "module"
     },
     "rules": {
+        "prefer-regex-literals": ["error", { "disallowRedundantWrapping": true }]
     }
 }
