@@ -11,5 +11,3 @@
 6. Dla mozliwosci sprawdzenia zostawilem pliki w folderze src zeby mozna bylo na szybko sprawdzic czy wszystko dziala. Usune to gdy projekt bedzie gotowy
 
 7. w plikach w folderze task uzywam require i moj vscode highlightuje to : 'File is a CommonJS module; it may be converted to an ES module.ts(80001)' i proponuje zamiane na import. Ignorowac to czy zamienic?
-
-8. W zadaniu ktore mi zadales jest napisane zeby uzyc autoprefixera ale nie wiem co to jest?
