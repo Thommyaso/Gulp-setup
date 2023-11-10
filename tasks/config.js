@@ -15,5 +15,4 @@ module.exports = {
     delete: './dist/**.dev.*',
     files: './dist/files',
   },
-
 };

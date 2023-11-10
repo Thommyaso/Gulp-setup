@@ -5,7 +5,6 @@ const concat = require('gulp-concat');
 const clean = require('gulp-clean-css');
 const gulp = require('gulp');
 
-
 // Development mode css
 gulp.task('buildStyles', () => src('./src/sass/main.scss', {sourcemaps: true})
   .pipe(sass().on('error', sass.logError))
