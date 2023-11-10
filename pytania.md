@@ -9,3 +9,5 @@
 5. Czy w trybie produkcji powinien byc ustawiony server i opcja watch cyz to jest tylko finalna wersja ktora tworzy pliki do gotowego projektu?
 
 6. Dla mozliwosci sprawdzenia zostawilem pliki w folderze src zeby mozna bylo na szybko sprawdzic czy wszystko dziala. Usune to gdy projekt bedzie gotowy
+
+7. w plikach w folderze task uzywam require i moj vscode highlightuje to : 'File is a CommonJS module; it may be converted to an ES module.ts(80001)' i proponuje zamiane na import. Ignorowac to czy zamienic?

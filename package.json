@@ -12,6 +12,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "browserify": {
+    "transform": [["babelify", { "presets": ["@babel/preset-env"] }]],
+    "plugin": ["tsify"],
+    "extensions": [".js", ".ts"]
+  },
   "devDependencies": {
     "@babel/core": "^7.21.8",
     "@babel/preset-env": "^7.21.5",

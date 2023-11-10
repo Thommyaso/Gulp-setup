@@ -1,4 +1,4 @@
-const { dest } = require('gulp');
+const {dest} = require('gulp');
 const browserify = require('browserify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
@@ -12,25 +12,25 @@ const gulp = require('gulp');
 const entry = './src/main.js';
 
 // Development Js
-gulp.task('buildJs', () => browserify({ entries: [entry], debug: true })
-  .transform(babelify, { presets: ['env'] })
+gulp.task('buildJs', () => browserify({entries: [entry], debug: true})
+  .transform(babelify, {presets: ['env']})
   .bundle()
   .pipe(source(entry))
-  .pipe(rename({ extname: '.dev.js' }))
+  .pipe(rename({extname: '.dev.js'}))
   .pipe(buffer())
-  .pipe(src.init({ loadMaps: true }))
+  .pipe(src.init({loadMaps: true}))
   .pipe(src.write('./'))
   .pipe(flatten())
   .pipe(dest('./dist')));
 
 // Production Js
-gulp.task('buildJs:prod', () => browserify({ entries: [entry], debug: true })
-  .transform(babelify, { presets: ['env'] })
+gulp.task('buildJs:prod', () => browserify({entries: [entry], debug: true})
+  .transform(babelify, {presets: ['env']})
   .bundle()
   .pipe(source(entry))
-  .pipe(rename({ extname: '.prod.min.js' }))
+  .pipe(rename({extname: '.prod.min.js'}))
   .pipe(buffer())
-  .pipe(src.init({ loadMaps: true }))
+  .pipe(src.init({loadMaps: true}))
   .pipe(terser())
   .pipe(src.write('./'))
   .pipe(flatten())
