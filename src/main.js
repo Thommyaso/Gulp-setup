@@ -1,7 +1,7 @@
 // import okey from './app';
-import imported from './app';
+import ok from './app';
 
-console.log(imported);
+console.log(ok);
 
 const abc = 1293;
 console.log(abc);

@@ -1,10 +1,11 @@
 const browserSync = require('browser-sync');
 const gulp = require('gulp');
+const config = require('./config');
 
 gulp.task('browserSyncServe', cb => {
   browserSync.init({
     server: {
-      baseDir: 'dist',
+      baseDir: config.path.dist,
     },
   });
   cb();

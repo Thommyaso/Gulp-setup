@@ -1,4 +1,4 @@
-const ok = 120000000;
+const ok = 'this is app js';
 
 export default ok;
 // module.exports = ok;

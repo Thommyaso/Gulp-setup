@@ -8,14 +8,13 @@ const terser = require('gulp-terser');
 const src = require('gulp-sourcemaps');
 const flatten = require('gulp-flatten');
 const gulp = require('gulp');
-
-const entry = './src/main.js';
+const config = require('./config');
 
 // Development Js
-gulp.task('buildJs', () => browserify({entries: [entry], debug: true})
+gulp.task('buildJs', () => browserify({entries: [config.main.js], debug: true})
   .transform(babelify, {presets: ['env']})
   .bundle()
-  .pipe(source(entry))
+  .pipe(source(config.main.js))
   .pipe(rename({extname: '.dev.js'}))
   .pipe(buffer())
   .pipe(src.init({loadMaps: true}))
@@ -24,13 +23,12 @@ gulp.task('buildJs', () => browserify({entries: [entry], debug: true})
   .pipe(dest('./dist')));
 
 // Production Js
-gulp.task('buildJs:prod', () => browserify({entries: [entry], debug: true})
+gulp.task('buildJs:prod', () => browserify({entries: [config.main.js], debug: true})
   .transform(babelify, {presets: ['env']})
   .bundle()
-  .pipe(source(entry))
+  .pipe(source(config.main.js))
   .pipe(rename({extname: '.prod.min.js'}))
   .pipe(buffer())
-  .pipe(src.init({loadMaps: true}))
   .pipe(terser())
   .pipe(src.write('./'))
   .pipe(flatten())

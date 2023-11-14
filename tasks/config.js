@@ -8,11 +8,14 @@ module.exports = {
   entryPoint: {
     scss: './src/index.scss',
   },
+  main: {
+    js: './src/main.js',
+    css: './src/sass/main.scss',
+  },
   path: {
     css: './dist/',
     js: './dist/',
     dist: './dist/',
-    delete: './dist/**.dev.*',
     files: './dist/files',
   },
 };
