@@ -1,21 +1,31 @@
-const {src, dest} = require('gulp');
-const sass = require('gulp-sass')(require('sass'));
-const autoprefixer = require('gulp-autoprefixer');
-const concat = require('gulp-concat');
-const clean = require('gulp-clean-css');
-const gulp = require('gulp');
+import gulp from 'gulp';
+import gulpSass from 'gulp-sass';
+import * as sass from 'sass';
+import autoprefixer from 'gulp-autoprefixer';
+import concat from 'gulp-concat';
+import clean from 'gulp-clean-css';
+import rev from 'gulp-rev';
+import path from './config.js';
 
-// Development mode css
-gulp.task('buildStyles', () => src('./src/sass/main.scss', {sourcemaps: true})
-  .pipe(sass().on('error', sass.logError))
-  .pipe(autoprefixer())
-  .pipe(concat('main.dev.css'))
-  .pipe(dest('dist', {sourcemaps: '.'})));
+const scss = gulpSass(sass);
 
-// Production mode css
-gulp.task('buildStyles:prod', () => src('./src/sass/main.scss', {sourcemaps: true})
-  .pipe(sass().on('error', sass.logError))
-  .pipe(autoprefixer())
-  .pipe(concat('main.prod.min.css'))
-  .pipe(clean())
-  .pipe(dest('dist', {sourcemaps: '.'})));
+const css = {
+  // Development mode css
+  build: () => gulp.src(path.main.scss, {sourcemaps: true})
+    .pipe(scss().on('error', scss.logError))
+    .pipe(autoprefixer())
+    .pipe(concat('main.dev.css'))
+    .pipe(rev())
+    .pipe(gulp.dest('dist', {sourcemaps: '.'})),
+
+  // Production mode css
+  buildProd: () => gulp.src(path.main.scss)
+    .pipe(scss().on('error', scss.logError))
+    .pipe(autoprefixer())
+    .pipe(concat('main.prod.min.css'))
+    .pipe(clean())
+    .pipe(rev())
+    .pipe(gulp.dest('dist')),
+};
+
+export default css;

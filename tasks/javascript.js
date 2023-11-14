@@ -1,37 +1,40 @@
-const {dest} = require('gulp');
-const browserify = require('browserify');
-const source = require('vinyl-source-stream');
-const buffer = require('vinyl-buffer');
-const babelify = require('babelify');
-const rename = require('gulp-rename');
-const terser = require('gulp-terser');
-const src = require('gulp-sourcemaps');
-const flatten = require('gulp-flatten');
-const gulp = require('gulp');
+import gulp from 'gulp';
+import browserify from 'browserify';
+import source from 'vinyl-source-stream';
+import buffer from 'vinyl-buffer';
+import babelify from 'babelify';
+import rename from 'gulp-rename';
+import terser from 'gulp-terser';
+import loadMaps from 'gulp-sourcemaps';
+import flatten from 'gulp-flatten';
+import rev from 'gulp-rev';
+import path from './config.js';
 
-const entry = './src/main.js';
+const javascript = {
+  // Development Js
+  build: () => browserify({entries: [path.main.js], debug: true})
+    .transform(babelify, {presets: ['env']})
+    .bundle()
+    .pipe(source(path.main.js))
+    .pipe(rename({extname: '.dev.js'}))
+    .pipe(buffer())
+    .pipe(rev())
+    .pipe(loadMaps.init({loadMaps: true}))
+    .pipe(loadMaps.write('./'))
+    .pipe(flatten())
+    .pipe(gulp.dest('./dist')),
 
-// Development Js
-gulp.task('buildJs', () => browserify({entries: [entry], debug: true})
-  .transform(babelify, {presets: ['env']})
-  .bundle()
-  .pipe(source(entry))
-  .pipe(rename({extname: '.dev.js'}))
-  .pipe(buffer())
-  .pipe(src.init({loadMaps: true}))
-  .pipe(src.write('./'))
-  .pipe(flatten())
-  .pipe(dest('./dist')));
+  // Production Js
+  buildProd: () => browserify({entries: [path.main.js], debug: true})
+    .transform(babelify, {presets: ['env']})
+    .bundle()
+    .pipe(source(path.main.js))
+    .pipe(rename({extname: '.prod.min.js'}))
+    .pipe(buffer())
+    .pipe(terser())
+    .pipe(flatten())
+    .pipe(rev())
+    .pipe(gulp.dest('./dist')),
+};
 
-// Production Js
-gulp.task('buildJs:prod', () => browserify({entries: [entry], debug: true})
-  .transform(babelify, {presets: ['env']})
-  .bundle()
-  .pipe(source(entry))
-  .pipe(rename({extname: '.prod.min.js'}))
-  .pipe(buffer())
-  .pipe(src.init({loadMaps: true}))
-  .pipe(terser())
-  .pipe(src.write('./'))
-  .pipe(flatten())
-  .pipe(dest('./dist')));
+export default javascript;

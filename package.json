@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "serve": "gulp serve",
     "build": "gulp",
@@ -13,9 +14,23 @@
   "author": "",
   "license": "ISC",
   "browserify": {
-    "transform": [["babelify", { "presets": ["@babel/preset-env"] }]],
-    "plugin": ["tsify"],
-    "extensions": [".js", ".ts"]
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "@babel/preset-env"
+          ]
+        }
+      ]
+    ],
+    "plugin": [
+      "tsify"
+    ],
+    "extensions": [
+      ".js",
+      ".ts"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
@@ -36,6 +51,7 @@
     "gulp-flatten": "^0.4.0",
     "gulp-inject": "^5.0.5",
     "gulp-rename": "^2.0.0",
+    "gulp-rev": "^11.0.0",
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-terser": "^2.1.0",

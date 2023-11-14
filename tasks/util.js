@@ -1,11 +1,16 @@
-const gulp = require('gulp');
-const clean = require('gulp-clean');
-const config = require('./config');
+import gulp from 'gulp';
+import clean from 'gulp-clean';
+import path from './config.js';
 
-gulp.task('clean', () => gulp
-  .src(config.path.delete, {read: false})
-  .pipe(clean()));
+const util = {
+  cleanAll: () => gulp.src(`${path.dest.dist}*`, {read: false})
+    .pipe(clean()),
 
-gulp.task('clean-all', () => gulp
-  .src(`${config.path.dist}*`, {read: false})
-  .pipe(clean()));
+  cleanJs: () => gulp.src(`${path.dest.js}*.js*`, {read: false})
+    .pipe(clean()),
+
+  cleanCss: () => gulp.src(`${path.dest.css}*.css*`, {read: false})
+    .pipe(clean()),
+};
+
+export default util;

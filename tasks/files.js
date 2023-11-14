@@ -1,5 +1,9 @@
-const gulp = require('gulp');
-const config = require('./config');
+import gulp from 'gulp';
+import path from './config.js';
 
-gulp.task('copyFiles', () => gulp.src(config.glob.files)
-  .pipe(gulp.dest(config.path.files)));
+const files = {
+  copyFiles: () => gulp.src(path.glob.files)
+    .pipe(gulp.dest(path.dest.files)),
+};
+
+export default files;

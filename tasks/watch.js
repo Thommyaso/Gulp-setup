@@ -1,21 +1,28 @@
-const gulp = require('gulp');
-const config = require('./config');
+import gulp from 'gulp';
+import path from './config.js';
+import tasks from './allTasks/taskLoader.js';
 
-gulp.task('watch-html', () => {
-  gulp.watch(config.glob.html, gulp.series('html', 'browserSyncReload'));
-});
 
-gulp.task('watch-js', () => {
-  gulp.watch(config.glob.js, gulp.series('buildJs', 'browserSyncReload'));
-});
+const watch = {
+  watchAll: () => {
+    gulp.watch(path.glob.js, gulp.series(
+      tasks.util.cleanJs,
+      tasks.lint.eslint,
+      tasks.javascript.build,
+      tasks.html.build,
+      tasks.browsersync.browserSyncReload));
 
-gulp.task('watch-css', () => {
-  gulp.watch(config.glob.scss, gulp.series('buildStyles', 'browserSyncReload'));
-});
+    gulp.watch(path.glob.scss, gulp.series(
+      tasks.util.cleanCss,
+      tasks.css.build,
+      tasks.html.build,
+      tasks.browsersync.browserSyncReload));
 
-gulp.task('watch-all', () => {
-  gulp.watch(config.glob.html, gulp.series('html', 'browserSyncReload'));
-  gulp.watch(config.glob.js, gulp.series('eslint', 'buildJs', 'browserSyncReload'));
-  gulp.watch(config.glob.scss, gulp.series('buildStyles', 'browserSyncReload'));
-  gulp.watch(config.glob.files, gulp.series('copyFiles', 'browserSyncReload'));
-});
+    gulp.watch(path.glob.html, gulp.series(
+      tasks.html.build,
+      tasks.browsersync.browserSyncReload));
+  },
+
+};
+
+export default watch;

@@ -1,8 +1,12 @@
-const gulp = require('gulp');
-const eslint = require('gulp-eslint');
-const config = require('./config');
+import gulp from 'gulp';
+import eslint from 'gulp-eslint';
+import path from './config.js';
 
-gulp.task('eslint', () => gulp.src([config.glob.js])
-  .pipe(eslint())
-  .pipe(eslint.format())
-  .pipe(eslint.failAfterError()));
+const lint = {
+  eslint: () => gulp.src([path.glob.js])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError()),
+};
+
+export default lint;
