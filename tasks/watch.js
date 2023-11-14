@@ -18,6 +18,12 @@ const watch = {
       tasks.html.build,
       tasks.browsersync.browserSyncReload));
 
+    gulp.watch(path.glob.files, gulp.series(
+      tasks.util.cleanFiles,
+      tasks.files.copyFiles,
+      tasks.browsersync.browserSyncReload
+    ));
+
     gulp.watch(path.glob.html, gulp.series(
       tasks.html.build,
       tasks.browsersync.browserSyncReload));

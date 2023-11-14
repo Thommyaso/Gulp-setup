@@ -11,6 +11,9 @@ const util = {
 
   cleanCss: () => gulp.src(`${path.dest.css}*.css*`, {read: false})
     .pipe(clean()),
+
+  cleanFiles: () => gulp.src(path.dest.files, {read: false})
+    .pipe(clean()),
 };
 
 export default util;
