@@ -9,6 +9,8 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "SHA256:yko6jZ2vXRDf5QzzviaJ3Ek12lTuThxEum6htn3Eh0s"
+          paths:
+            - /home/circleci/.ssh/id_ed25519
       - checkout
       - node/install-packages:
           pkg-manager: npm
