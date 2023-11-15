@@ -6,6 +6,9 @@ jobs:
   dev_and_prod:
     executor: node/default
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:yko6jZ2vXRDf5QzzviaJ3Ek12lTuThxEum6htn3Eh0s"
       - checkout
       - node/install-packages:
           pkg-manager: npm
