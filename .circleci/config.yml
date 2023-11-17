@@ -1,0 +1,29 @@
+version: 2.1
+orbs:
+  node: circleci/node@5.1.0
+
+jobs:
+  dev_and_prod:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          command: npm run gulp
+          name: Run dev
+          root: ~/project
+          paths:
+            - .
+      - run:
+          command: npm run gulp build
+          name: Run prod build
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - .
+
+workflows:
+  build_test:
+    jobs:
+      - dev_and_prod
