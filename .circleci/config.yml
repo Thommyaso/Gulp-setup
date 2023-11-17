@@ -12,14 +12,14 @@ jobs:
       - run:
           command: npm run gulp
           name: Run dev
-          root: ~/project
+          root: ~/Gulp-setup
           paths:
             - .
       - run:
           command: npm run gulp build
           name: Run prod build
       - persist_to_workspace:
-          root: ~/project
+          root: ~/Gulp-setup
           paths:
             - .
 
