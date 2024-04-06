@@ -9,4 +9,8 @@ charset = utf-8
 
 [*.{js,css,html}]
 indent_style = space
-indent_size = 4 
+indent_size = 4
+
+# Ignore minified JavaScript files.
+[**.min.js]
+indent_style = ignore
